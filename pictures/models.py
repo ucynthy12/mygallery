@@ -13,6 +13,9 @@ class Category(models.Model):
 class Location(models.Model):
     name= models.CharField(max_length=50)
 
+    def save_location(self):
+        self.save()
+
     def __str__(self):
         return self.name
         
@@ -35,19 +38,20 @@ class Image(models.Model):
 
     @classmethod
     def get_image_by_id(cls,id):
-      image=cls.objects.filter(id=id).all()
-      return image
+
+        image=cls.objects.filter(id=id).all()
+        return image
 
 
 
     @classmethod
-    def search_image(category):
-        album = cls.objects.filter(category__name__icontains=search_term)
+    def search_image(cls,category):
+        album = cls.objects.filter(category__name__icontains=category)
         return album
 
     @classmethod
     def filter_by_location(cls,location):
-        image_loc = Image.objects.filter(location_name=location).all()
+        image_loc = Image.objects.filter(location__name=location).all()
         return image_loc
 
     def __str__(self):
