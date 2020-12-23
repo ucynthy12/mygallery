@@ -21,7 +21,7 @@ class Location(models.Model):
         
 class Image(models.Model):
     gallery_image = models.ImageField(upload_to = 'album/')
-    name = models.CharField(max_length=40)
+    photographer= models.CharField(max_length=40)
     description = models.TextField()
     location = models.ForeignKey(Location,on_delete=models.CASCADE)
     category = models.ForeignKey(Category,on_delete=models.CASCADE)
@@ -46,8 +46,9 @@ class Image(models.Model):
 
     @classmethod
     def search_image(cls,category):
-        album = cls.objects.filter(category__name__icontains=category)
-        return album
+        images = cls.objects.filter(category__name__icontains=category)
+        print(images)
+        return images
 
     @classmethod
     def filter_by_location(cls,location):
@@ -56,7 +57,7 @@ class Image(models.Model):
 
     def __str__(self):
 
-        return self.name
+        return self.photographer
 
     class Meta:
         ordering = ['pub_date']
