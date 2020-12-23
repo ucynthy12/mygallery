@@ -1,0 +1,38 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap');
+.top-bar {
+    border-bottom: 1px solid rgb(104, 250, 85);
+    padding: 20px 10px;
+    box-shadow: 0 8px 6px -6px rgb(131, 131, 131);
+}
+
+.top-bar a {
+    text-decoration: none;
+    color: black;
+}
+
+.top-bar a:hover {
+    color: rgb(40, 214, 49);
+    transition: 1s ease-in;
+}
+
+input[type=search] {
+    border-radius: 20px;
+    margin-left: 30px;
+}
+
+.btn {
+    border-radius: 20px;
+}
+
+.navbar-brand {
+    font-family: 'Cinzel', serif;
+}
+
+.card-columns {
+    margin-top: 10px;
+}
+
+.card {
+    border: none;
+    cursor: pointer;
+}
