@@ -40,6 +40,7 @@
                             <p class="text-muted">&nbsp;<small>{{image.pub_date}}</small></p>
                             <form action="" class="form-inline" style="margin-bottom: 20px;">
                                 <input class="form-control" type="text"
+                            value="https://mygallerya.herokuapp.com{{image.gallery_image.url}}"
                                     id="{{image.id}}.url" style="width: 90%;">
                                 <button class="btn btn-success btn-sm " data-dismiss="modal"
                                     onclick="copyLink('{{image.id}}.url')">Copy</button>
