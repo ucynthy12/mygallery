@@ -1,0 +1,83 @@
+{%extends 'all-photos/base.html'%}
+
+{% block content %}
+{{block.super}}
+
+
+
+<div class="jumbotron bg-dark text-center">
+
+    <h3 style=" font-family: 'Cinzel', serif; margin-top: 20px;color: white;"><span style="font-size: 30px;color: rgb(44, 161, 29);">G</span>allery</h3>
+    <h6 style=" font-family: 'Cinzel', serif;color: white;">A display of pictures from different african countries</h6>
+    <p style="color: white;"><small>Categories:Nature,People,Backgrounds</small></p>
+</div>
+
+
+<div class="container">
+
+    <div class="top-bar d-flex justify-content-between ">
+        {% for location in locations%}
+        <a href="/location/{{location}}">{{location}}</a>
+        {%endfor%}
+    </div>
+</div>
+
+
+
+<div class="card-columns">
+    {% for image in album %}
+    <div class="card" data-toggle="modal" data-target="#mymodal{{image.id}}">
+        <img src="{{image.gallery_image.url}}" alt="" class="card-img ">
+
+        <div class="modal fade" id="mymodal{{image.id}}" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered  modal-lg" role="document">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h6 class="modal-title" id="exampleModalLongTitle" style=" font-family: 'Cinzel', serif;"><i
+                                class="far fa-user"></i>&nbsp;{{image.photographer}}</h6>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+
+                    </div>
+                    <div class="modal-body">
+                        <img src="{{image.gallery_image.url}}" alt="" class="card-img " height="400px"
+                            style="object-fit: contain;">
+                        <p class="text-center">{{image.description}}</p>
+
+                        <p class="text-muted"><i
+                                class="fas fa-map-marker-alt"></i>&nbsp;<small>{{image.location}}</small></p>
+
+                        <p class="text-muted">&nbsp;<small>{{image.pub_date}}</small></p>
+                        <form action="" class="form-inline" style="margin-bottom: 20px;">
+                            <input class="form-control" type="text"
+                                id="{{image.id}}.url" style="width: 90%;">
+                            <button class="btn btn-success btn-sm " data-dismiss="modal"
+                                onclick="copyLink('{{image.id}}.url')">Copy</button>
+                        </form>
+
+                        <p><small class="text-muted float-right">{{image.category}}</small></p>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    {% endfor %}
+    <script>
+        copyLink = (element) => {
+            document.getElementById(element).select();
+            document.execCommand("copy");
+        }
+    </script>
+</div>
+
+
+{% endblock %}
